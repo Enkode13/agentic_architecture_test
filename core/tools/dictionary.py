@@ -1,0 +1,25 @@
+import requests
+
+def dictionary_tool(word):
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()[0]
+            meaning = data['meanings'][0]
+
+            definition = meaning['definitions'][0]['definition']
+
+            return {
+                "result": f"{word}: {definition}"
+            }
+
+        return {"error": "Word not found."}
+
+    except Exception as e:
+        return {"error": str(e)}
+
+
+
+# Example Usage for your Agent:
+# print(dictionary_tool("quantum"))

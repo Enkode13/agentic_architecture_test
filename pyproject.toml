@@ -1,0 +1,21 @@
+[project]
+name = "agentic-architecture-test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "colorlog>=6.10.1",
+    "fastapi>=0.136.1",
+    "groq>=1.1.2",
+    "httpx>=0.28.1",
+    "langchain-community>=0.4.1",
+    "langgraph>=1.1.10",
+    "mcp[cli]>=1.28.1",
+    "nltk>=3.9.4",
+    "pymilvus[model]>=2.6.12",
+    "pymupdf>=1.27.2.2",
+    "semchunk>=4.0.0",
+    "sentence-transformers>=5.3.0",
+    "uvicorn>=0.46.0",
+]
