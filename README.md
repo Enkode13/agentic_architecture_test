@@ -146,7 +146,8 @@ agentic_architecture_test/
 │   ├── retrieval.py           # Hybrid vector search logic
 │   ├── vectordb.py            # Milvus collection setup & query handling
 │   ├── ingestion.py           # PDF ingestion pipeline
-│   └── raw_docs/              # Source PDFs (Heisenberg, Schrödinger, Einstein, Planck)
+│   ├── raw_docs/              # Source PDFs (Heisenberg, Schrödinger, Einstein, Planck)
+│   └── rag_population.ipynb   # Populating the milvus vector datastore
 │
 ├── lang_core/                 # [Gen 2] Single-agent LangGraph setup (Legacy)
 │   ├── agent.py               # Single-agent graph compilation
@@ -155,7 +156,7 @@ agentic_architecture_test/
 │
 └── lang_core_multi/           # [Gen 3] Multi-agent orchestration (Current System)
     ├── agent.py               # Main graph compilation, conditional edges & subgraph wiring
-    ├── agent_nodes.py          # Controller, tool agent, retrieval, & consolidation nodes
+    ├── agent_nodes.py         # Controller, tool agent, retrieval, & consolidation nodes
     ├── agent_llm.py           # Groq SDK initialization & structured prompt mechanics
     ├── all_state.py           # Schemas: Main State, Tool State, Retrieval State
     ├── rag_core/              # Hybrid Milvus retrieval pipeline utilities
@@ -198,7 +199,6 @@ Create a `.env` file in the root directory:
 ```env
 GROQ_API_KEY=your_groq_api_key_here
 MILVUS_URI=http://localhost:19530
-LOG_LEVEL=INFO
 ```
 
 ### 3. Populating the Vector Database
@@ -206,18 +206,12 @@ LOG_LEVEL=INFO
 To ingest the quantum physics PDF papers into your Milvus collection, execute the RAG population script:
 
 ```bash
-uv run python -m lang_core_multi.rag_core.ingestion
+uv run python -m lang_core_multi.rag_core.rag_population
 ```
 
 ### 4. Running the MCP Server & API Gateway
 
-Start the native MCP Server:
-
-```bash
-uv run python -m lang_core_multi.mcp.mcp_server
-```
-
-In a separate terminal, launch the FastAPI gateway server:
+Start the native MCP Server and launch the FastAPI gateway server:
 
 ```bash
 uv run uvicorn main:app --reload --port 8000
