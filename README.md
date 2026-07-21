@@ -14,7 +14,7 @@ This repository demonstrates the progressive evolution of an LLM system from a r
 
 ## 🎯 Domain Context & Target Use Case
 
-The target domain for this system is **advanced scientific Q&A over foundational quantum physics academic papers** (specifically covering Heisenberg, Schrödinger, Einstein, and Planck). 
+The target domain for this system is **advanced scientific Q&A over foundational quantum physics academic papers** (specifically covering Heisenberg, Schrödinger, Einstein, and Planck). For testing, it has only one pdf for Schrödinger set up to be uploaded to vector db. Can be changed in the ingestion.py for a different file. [Current support: only one file upload at a time]
 
 The pipeline handles complex user queries that demand a combination of domain-specific semantic retrieval, contextual calculation, and precise tool execution using high-throughput Groq inference.
 
