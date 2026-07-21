@@ -1,12 +1,13 @@
 import pymupdf, os
+from pathlib import Path
 
 class ingest:
     def __init__(self):
-        self.source = "C:/Projects/agentic_architecture_test/core/raw_docs/Schrödinger_1926_eng.pdf"
-        self.path="C:/Projects/agentic_architecture_test/core/raw_docs/"
+        self.path = Path.cwd() / "core" / "raw_docs"
+        self.source = self.path / "Schrödinger_1926_eng.pdf"
 
     def pdf_load_single(self):
-        doc = pymupdf.open(self.source)
+        doc = pymupdf.open(str(self.source))
         full_text = ""
 
         file_name_only = os.path.basename(doc.name)

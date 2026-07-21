@@ -1,8 +1,12 @@
 from pymilvus import MilvusClient, db, DataType, Function, FunctionType
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 class vector_store:
     def __init__(self, db_name="agent_memory", collection_name="agent_RAG", dim=768):
-        self.uri = "http://localhost:19530"
+        self.uri = os.environ.get("MILVUS_URI")
         self.token = "root:Milvus"
 
         self.ensure_db(db_name)

@@ -1,12 +1,20 @@
-import pymupdf, os
+import os
+from pathlib import Path
+import pymupdf
+
 
 class ingest:
     def __init__(self):
-        self.source = "C:/Projects/agentic_architecture_test/core/raw_docs/Schrödinger_1926_eng.pdf"
-        self.path="C:/Projects/agentic_architecture_test/core/raw_docs/"
+        # Path to the directory where ingestion.py lives: core/
+        self.core_dir = Path(__file__).resolve().parent
+
+        # Build paths dynamically relative to core/
+        self.path = self.core_dir / "raw_docs"
+        self.source = self.path / "Schrödinger_1926_eng.pdf"
 
     def pdf_load_single(self):
-        doc = pymupdf.open(self.source)
+        # Convert Path object to string if library requires a string path
+        doc = pymupdf.open(str(self.source))
         full_text = ""
 
         file_name_only = os.path.basename(doc.name)
